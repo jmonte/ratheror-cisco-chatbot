@@ -1,4 +1,4 @@
-#Ratheror - Interactive Event Organizing Buddy
+# Ratheror - Interactive Event Organizing Buddy
 
 #### Email of Chatbot
 
