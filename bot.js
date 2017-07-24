@@ -6,14 +6,6 @@ var port = 3000;
 
 var tunnel = localtunnel(port, function(err, tunnel) {
     if (err) console.log(err);
-    // the assigned public url for your tunnel
-    // i.e. https://abcdefgjhij.localtunnel.me
-    // tunnel.url;
-
-
-
-
-
 
     var public_address = tunnel.url;
     var cisco_token = 'Y2NhOGI0YWUtNjY4Ny00NmIzLWI5MjktZmU5OWQzNmJlZGI0ODYyZjRmYzItNzU1';
@@ -76,21 +68,6 @@ var tunnel = localtunnel(port, function(err, tunnel) {
         });
     });
 
-    // participants
-    // controller.hears('All Files', 'message_received,direct_message', function(bot, message) {
-    //    // bot.reply(message, {
-    //    //  attachments: [
-    //    //      {
-    //    //          contentType: 'image/png',
-    //    //          contentUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png',
-    //    //          name: 'Bender_Rodriguez.png'
-    //    //      }
-    //    //  ]
-    //    //  });
-    //    controller.storage.users.save({id: message.user, foo:'bar'}, function(err) {  });
-    //    bot.reply(message,{text: 'Hello', markdown: '*Hello!*'});
-    // });
-
     controller.on('direct_mention', function(bot, message) {
         // bot.reply(message, 'You mentioned me and said, "' + message.text + '"');
         if( message.text == 'Last Poll') {
@@ -107,47 +84,6 @@ var tunnel = localtunnel(port, function(err, tunnel) {
             bot.reply(message , {markdown:"Here are your top students answering the quiz:\n1. jeffreymonte@yahoo.com ( Answered 2 quiz, 100% avg)" , text: "Here are the list of quizzes your haven't finished"})            
         }
     });
-
-    // controller.hears('Last Quizes', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-    // controller.hears('Active Contest', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-    // controller.hears('Send Feedback', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-
-
-    // // Admin Powers
-    // controller.hears('Create Survey', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-    // controller.hears('Make Announcement', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-    // controller.hears('Question Sent', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-    // controller.hears('Broadcast File', 'direct_message,direct_mention', function(bot, message) {
-
-    // });
-
-
-
-    // controller.hears('hello', 'direct_message,direct_mention', function(bot, message) {
-    //     bot.reply(message, 'Hi');
-    // });
-
-    // controller.on('direct_mention', function(bot, message) {
-    //     bot.reply(message, 'You mentioned me and said, "' + message.text + '"');
-    // });
 
     controller.on('direct_message', function(bot, message) {
         // bot.reply(message, 'I got your private message. You said, "' + message.text + '"');
