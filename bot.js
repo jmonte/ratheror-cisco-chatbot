@@ -119,8 +119,40 @@ var tunnel = localtunnel(port, function(err, tunnel) {
                 });
 
             });
+        } else if( message.text == 'Broadcast File') {
+              bot.startConversation(message, function(err, convo) {
+                // convo.say('Did someone say cookies!?!!');
+                convo.ask({markdown:"What is the url of the file?", text: 'What is the url of the file?' } , function(response, convo) {
+                    controller.storage.questions.save({ id: 'sdfd', user_id: message.user, vote: response.text}, function(err) { console.log('Save'); });
+                    convo.say({markdown:"File Successfully added!", text:"File Successfully added!"});
+                });
+            });
         } else if( message.text == 'Quiz') {
             bot.reply(message , {markdown:"Here are the quizzes your haven't finish.\n1. (q10) Intro to Color Theory - 2 questions\n2. (ct2) Intro to Artificial Intelligence - 4 questions" , text: "Here are the list of quizzes your haven't finished"})            
+        } else if( message.text == 'Create Poll') {
+            bot.startConversation(message, function(err, convo) {
+
+                convo.setVar('question_id','kh62'); // random question_id
+                // convo.say('Did someone say cookies!?!!');
+                convo.ask({text: 'What is question or title?' } , function(response, convo) {
+                    console.log( convo.vars.question_id);
+                    convo.setVar('question_title',response.text); // random question_id
+
+                    convo.ask({text: 'How about the choices separated by a comma?' } , function(response, convo) {
+                    // convo.say('Golly, I love ' + response.text + ' too!!!');
+                    var choices = response.split(",");
+                    if( choices.length > 2) {
+                        convo.say({markdown:"Poll created. Here is the question code: " + convo.vars.question_id});
+                        controller.storage.questions.save({ id: 'sdfd', user_id: message.user, vote: response.text}, function(err) { console.log('Save'); });
+                        convo.next();
+                    } else {
+                        convo.repeat();
+                    }
+                           
+                     });
+                });
+
+            });
         } else if (message.text == 'Start q10') {
              bot.startConversation(message, function(err, convo) {
                 var quiz_id = 'q10';
