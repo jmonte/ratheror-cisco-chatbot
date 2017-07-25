@@ -1,5 +1,11 @@
 var Botkit = require('botkit');
+var localtunnel = require('localtunnel');
 var Store = require('jfs');
+
+var port = 3000;
+
+var tunnel = localtunnel(port, function(err, tunnel) {
+    if (err) console.log(err);
 
     var public_address = tunnel.url;
     var cisco_token = 'Y2NhOGI0YWUtNjY4Ny00NmIzLWI5MjktZmU5OWQzNmJlZGI0ODYyZjRmYzItNzU1';
@@ -221,3 +227,9 @@ var Store = require('jfs');
         }
         
     });
+
+});
+
+tunnel.on('close', function() {
+    // tunnels are closed
+});
